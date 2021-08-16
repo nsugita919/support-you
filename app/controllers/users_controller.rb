@@ -14,12 +14,12 @@ class UsersController < ApplicationController
       render :new
     end
     
-    private
-
-    def user_params
-      params.require(:user).permit(:company_name, :name, :email, :password, :password_confirmation, :admin_flg)
-    end
   end
   
+  private
+
+  def user_params
+    params.require(:user).permit(:company_name, :name, :email, :password, :password_confirmation, :admin_flg)
+  end
   
 end
