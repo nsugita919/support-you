@@ -3,9 +3,11 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-	  <%= form_with(model: @support_request) do |f| %>
+  <div class="col-sm-6 offset-sm-3">
+    <%= form_with(model: @support_request) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="mb-3">
         リクエスト製品：
         <%= f.radio_button :product_name, :AWS %>
         <%= f.label :product_name, "AWS", {value: :AWS, style: "display: inline-block;"} %>
@@ -13,15 +15,17 @@
         <%= f.label :product_name, "Salesforce", {value: :Salesforce, style: "display: inline-block;"} %>
         <%= f.radio_button :product_name, :GCP %>
         <%= f.label :product_name, "GCP", {value: :GCP, style: "display: inline-block;"} %>
-  </div>
-  <div class="col-md-8">
-          <%= f.label :contents, 'サポートリクエスト内容：' %>
-          <%= f.text_area :contents, class:'form-control', rows: 10 %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :contents, 'サポートリクエスト内容：' %>
+        <%= f.text_area :contents, class:'form-control', rows: 10 %>
+      </div>
+      
+      <%= f.hidden_field :status, :value => '新規' %>
+      
+      <%= f.submit '登録', class:'btn btn-outline-primary btn-sm w-100' %>
+    <% end %>
     
-          <%= f.hidden_field :status, :value => '新規' %>
-          
-          <%= f.submit '登録', class:'btn btn-outline-primary btn-sm' %>
-      <% end %>
+    <p>まだユーザ登録をお済みでない方は <%= link_to 'こちらからご登録ください', signup_path %></p>
   </div>
-  
 </div>

@@ -1,5 +1,5 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <p>ログインユーザ: <%= current_user.name %></p>
   <%= link_to 'リクエスト登録ページへ', new_support_request_path, class: 'btn btn-lg btn-primary' %>
 <% else %>
   <div class="bg-light p-3 p-sm-5 my-4 rounded">
