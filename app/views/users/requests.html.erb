@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-3">
+    <p><%= @user.company_name %> 様</p>
+    <p><%= link_to '新規リクエスト', new_support_request_path, class: 'btn btn-outline-primary btn-sm' %></p>
+  </div>
+
+  <div class="col-md-9">
+    <% if @support_requests.any? %>
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>対象製品</th>
+              <th>リクエスト内容</th>
+              <th>リクエスト日</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+          <% @support_requests.each do |support_request| %>
+            <tr>
+              <td><%= link_to support_request.id, support_request_path(support_request.id), class: "text-decoration-none" %></td>
+              <td><%= support_request.product_name %></td>
+              <td><%= support_request.contents %></td>
+              <td><%= support_request.created_at.strftime("%Y/%m/%d") %></td>
+              <td><%= support_request.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+
+  <div><%== pagy_nav(@pagy) %></div>
+</div>

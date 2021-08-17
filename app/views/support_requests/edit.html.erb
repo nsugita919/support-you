@@ -1,0 +1,42 @@
+<div class="row">
+  <p><%= @support_request.user.company_name %> 様</p>
+  <table class="table table-borderless">
+      <tr>
+        <td>対象製品</td>
+        <td><%= @support_request.product_name %></td>
+      </tr>
+      <tr>
+        <td>ステータス</td>
+        <td>
+        <%= form_with(model: @support_request) do |f| %>
+          <%= f.radio_button :status, :新規 %>
+          <%= f.label :status, "新規", {value: :新規, style: "display: inline-block;"} %>
+  
+          <%= f.radio_button :status, :対応可能 %>
+          <%= f.label :status, "対応可能", {value: :対応可能, style: "display: inline-block;"} %>
+  
+          <%= f.radio_button :status, :アサイン中 %>
+          <%= f.label :status, "アサイン中", {value: :アサイン中, style: "display: inline-block;"} %>
+  
+          <%= f.radio_button :status, :対応中 %>
+          <%= f.label :status, "対応中", {value: :対応中, style: "display: inline-block;"} %>
+  
+          <%= f.radio_button :status, :完了 %>
+          <%= f.label :status, "完了", {value: :完了, style: "display: inline-block;"} %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= f.label :contents, 'サポートリクエスト内容' %></td>
+        <td><%= f.text_area :contents, class: 'form-control', rows: 10 %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit 'ステータス更新',class: 'btn btn-outline-primary btn-sm' %></td>
+      </tr>      
+    <% end %>
+  </table>
+</div>
+
+<div class="text-center">
+  <p><%= link_to '一覧に戻る', support_requests_path %></p>
+</div>

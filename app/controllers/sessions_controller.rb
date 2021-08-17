@@ -7,7 +7,12 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_back fallback_location: '/'
+      @user = User.find_by(email: email)
+      if @user.admin_flg
+        redirect_to support_requests_path
+      else
+        redirect_to requests_user_path(current_user)
+      end
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render :new

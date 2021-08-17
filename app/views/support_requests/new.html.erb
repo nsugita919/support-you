@@ -1,0 +1,27 @@
+<div class="text-center">
+  <h1>サポートリクエスト新規登録</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+	  <%= form_with(model: @support_request) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        リクエスト製品：
+        <%= f.radio_button :product_name, :AWS %>
+        <%= f.label :product_name, "AWS", {value: :AWS, style: "display: inline-block;"} %>
+        <%= f.radio_button :product_name, :Salesforce %>
+        <%= f.label :product_name, "Salesforce", {value: :Salesforce, style: "display: inline-block;"} %>
+        <%= f.radio_button :product_name, :GCP %>
+        <%= f.label :product_name, "GCP", {value: :GCP, style: "display: inline-block;"} %>
+  </div>
+  <div class="col-md-8">
+          <%= f.label :contents, 'サポートリクエスト内容：' %>
+          <%= f.text_area :contents, class:'form-control', rows: 10 %>
+    
+          <%= f.hidden_field :status, :value => '新規' %>
+          
+          <%= f.submit '登録', class:'btn btn-outline-primary btn-sm' %>
+      <% end %>
+  </div>
+  
+</div>

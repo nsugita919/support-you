@@ -32,9 +32,9 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
     
-    <%= hidden_field_tag :admin_flg, 0 %>
+    <%= f.hidden_field :admin_flg, :value => 0 %>
     
-    <%= f.submit '登録', class: 'btn btn-primary w-100' %>
+    <%= f.submit '登録', class: 'btn btn-outline-primary btn-sm w-100' %>
   <% end %>
   </div>
 </div>

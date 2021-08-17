@@ -1,11 +1,12 @@
 <% if logged_in? %>
   <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <%= link_to 'リクエスト登録ページへ', new_support_request_path, class: 'btn btn-lg btn-primary' %>
 <% else %>
   <div class="bg-light p-3 p-sm-5 my-4 rounded">
     <div class="text-center text-dark">
-      <h3>Support You サイトへようこそ！</h3>
+      <h3>Support You へようこそ！</h3>
       <p>現在ご利用の製品の利用方法についてのご質問、追加実装への対応依頼を受け付けております。</p>
-      <%= link_to 'ユーザ登録をする', signup_path, class: 'btn btn-lg btn-primary' %>
+      <%= link_to 'ユーザ登録をする', signup_path, class: 'btn btn-outline-primary btn-sm' %>
     </div>
   </div>
 <% end %>  
