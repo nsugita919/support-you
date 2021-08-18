@@ -25,9 +25,13 @@ class SupportRequestsController < ApplicationController
   end
 
   def show
-    @support_request = current_user.support_requests.find_by(id: params[:id])
-    unless @support_request
-      redirect_to root_url
+    if current_user.admin_flg
+      @support_request = SupportRequest.find(params[:id])
+    else 
+      @support_request = current_user.support_requests.find_by(id: params[:id])
+      unless @support_request
+        redirect_to root_url
+      end
     end
   end
   
