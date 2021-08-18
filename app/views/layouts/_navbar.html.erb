@@ -9,9 +9,11 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <% if logged_in? %>
           <div class="btn-group">
-            <ul class="navbar-nav">
-              <li class="ms-3"><%= link_to 'マイページ', requests_user_path(current_user.id), class: 'nav-link' %></li>
-            </ul>
+            <% unless current_user.admin_flg %>
+              <ul class="navbar-nav">
+                <li class="ms-3"><%= link_to 'マイページ', requests_user_path(current_user.id), class: 'nav-link' %></li>
+              </ul>
+            <% end %>
             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.name %></button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li class="dropdown-divider"></li>

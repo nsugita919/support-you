@@ -1,7 +1,10 @@
 <% if logged_in? %>
   <p>ログインユーザ: <%= current_user.name %></p>
-  <p><%= link_to 'リクエスト登録ページへ', new_support_request_path, class: 'btn btn-outline-primary btn-sm' %></p>
-  <p><%= link_to 'マイページへ', requests_user_path(current_user.id), class: 'btn btn-outline-primary btn-sm' %></p>
+  <% if current_user.admin_flg %>
+    <p><%= link_to 'リクエスト一覧へ', support_requests_path, class: 'btn btn-outline-primary btn-sm' %></p>
+  <% else %>
+    <p><%= link_to 'リクエスト登録ページへ', new_support_request_path, class: 'btn btn-outline-primary btn-sm' %></p>
+  <% end %>
 <% else %>
   <div class="bg-light p-3 p-sm-5 my-4 rounded">
     <div class="text-center text-dark">
