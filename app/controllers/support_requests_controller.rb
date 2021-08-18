@@ -2,7 +2,11 @@ class SupportRequestsController < ApplicationController
   before_action :require_user_logged_in
   
   def index
-    @pagy, @support_requests = pagy(SupportRequest.all.order(id: :desc),items:5)
+    if current_user.admin_flg
+      @pagy, @support_requests = pagy(SupportRequest.all.order(id: :desc),items:10)
+    else
+      redirect_to root_url
+    end
   end
 
   def new
@@ -21,14 +25,17 @@ class SupportRequestsController < ApplicationController
   end
 
   def show
-    @support_request = SupportRequest.find(params[:id])
+    @support_request = current_user.support_requests.find_by(id: params[:id])
+    unless @support_request
+      redirect_to root_url
+    end
   end
   
   def edit
     if current_user.admin_flg
       @support_request = SupportRequest.find(params[:id])
     else
-      redirect_to requests_user_path
+      redirect_to root_url
     end
   end
   

@@ -1,6 +1,7 @@
 <% if logged_in? %>
   <p>ログインユーザ: <%= current_user.name %></p>
-  <%= link_to 'リクエスト登録ページへ', new_support_request_path, class: 'btn btn-lg btn-primary' %>
+  <p><%= link_to 'リクエスト登録ページへ', new_support_request_path, class: 'btn btn-outline-primary btn-sm' %></p>
+  <p><%= link_to 'マイページへ', requests_user_path(current_user.id), class: 'btn btn-outline-primary btn-sm' %></p>
 <% else %>
   <div class="bg-light p-3 p-sm-5 my-4 rounded">
     <div class="text-center text-dark">

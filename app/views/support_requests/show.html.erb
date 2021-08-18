@@ -1,29 +1,35 @@
 <div class="row">
-  <p><%= @support_request.user.company_name %> 様</p>
-  <table class="table table-striped">
-      <tr>
-        <td>対象製品</td>
-        <td><%= @support_request.product_name %></td>
-      </tr>
-      <tr>
-        <td>ステータス</td>
-        <td><%= @support_request.status %></td>
-      </tr>
-      <tr>
-        <td>サポートリクエスト内容</td>
-        <td><%= @support_request.contents %></td>
-      </tr>
-  </table>
-</div>
-
-<div class="text-center">
-  <% if current_user.admin_flg %>
-    <%= link_to '一覧に戻る', support_requests_path ,class: 'btn btn-outline-primary btn-sm' %>
-  <% else %>
-    <%= link_to '一覧に戻る', requests_user_path ,class: 'btn btn-outline-primary btn-sm' %>
-  <% end %>
+  <div class = "offset-md-1 col-md-8">
+    <p><%= @support_request.user.company_name %> 様</p>
+    <table class="table table-striped">
+        <tr>
+          <td>No.</td>
+          <td><%= @support_request.id %></td>
+        </tr>
+        <tr>
+          <td>対象製品</td>
+          <td><%= @support_request.product_name %></td>
+        </tr>
+        <tr>
+          <td>ステータス</td>
+          <td><%= @support_request.status %></td>
+        </tr>
+        <tr>
+          <td>サポートリクエスト内容</td>
+          <td><%= @support_request.contents %></td>
+        </tr>
+    </table>
+  </div>
   
-  <% if current_user.admin_flg %>
-    <%= link_to 'ステータス更新ページへ', edit_support_request_path(@support_request.id),class: 'btn btn-outline-primary btn-sm' %>
-  <% end %>
+  <div class="text-center">
+    <% if current_user.admin_flg %>
+      <%= link_to '一覧に戻る', support_requests_path ,class: 'btn btn-outline-primary btn-sm' %>
+    <% else %>
+      <%= link_to '一覧に戻る', requests_user_path ,class: 'btn btn-outline-primary btn-sm' %>
+    <% end %>
+    
+    <% if current_user.admin_flg %>
+      <%= link_to 'ステータス更新ページへ', edit_support_request_path(@support_request.id),class: 'btn btn-outline-primary btn-sm' %>
+    <% end %>
+  </div>
 </div>
