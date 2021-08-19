@@ -22,7 +22,7 @@
             <tr>
               <td><%= link_to support_request.id, support_request_path(support_request.id), class: "text-decoration-none" %></td>
               <td><%= support_request.product_name %></td>
-              <td><%= support_request.contents %></td>
+              <td><%= safe_join(support_request.contents.split("\n"),tag(:br)) %></td>
               <td><%= support_request.created_at.strftime("%Y/%m/%d") %></td>
               <td><%= support_request.status %></td>
             </tr>

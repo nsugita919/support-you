@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <td>サポートリクエスト内容</td>
-          <td><%= @support_request.contents %></td>
+          <td><%= safe_join(@support_request.contents.split("\n"),tag(:br)) %></td>
         </tr>
     </table>
   </div>

@@ -1,8 +1,9 @@
 <div class="row">
 
-    <p>
-      <%= @support_request.user.company_name %> 様　対象製品：<%= @support_request.product_name %>
-    </p>
+    <p><%= @support_request.user.company_name %> 様</p>
+    <p>対象製品：<%= @support_request.product_name %></p>
+    <p>サポートリクエスト内容</p>
+    <p><%= safe_join(@support_request.contents.split("\n"),tag(:br)) %></p>
     
     <p>
     <%= form_with(model: @support_request) do |f| %>
@@ -24,11 +25,9 @@
     </p>
     
     <p>
-      <%= f.label :contents, 'サポートリクエスト内容' %>
-      <%= f.text_area :contents, class: 'form-control', rows: 10 %>
-    
       <%= f.submit 'ステータス更新', class: 'btn btn-outline-primary btn-sm w-100' %>
     </p>
     <% end %>
+
   <p><%= link_to '一覧に戻る', support_requests_path %></p>
 </div>
